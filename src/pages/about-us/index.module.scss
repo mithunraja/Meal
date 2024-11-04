@@ -8,7 +8,7 @@
 }
 .aboutTitle {
   h2 {
-    color: $primary;
+    color: $sccondary;
     text-align: center;
     font-size: 3rem;
     margin-bottom: 1.25rem;
@@ -26,7 +26,12 @@
 }
 .aboutTopLeft {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  a {
+    color: $dark;
+    font-weight: 800;
+    text-decoration: underline;
+  }
 }
 
 .setsUsApart {

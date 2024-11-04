@@ -7,6 +7,10 @@ import blog3 from "@/assets/front/images/blog/3.jpg";
 import blog4 from "@/assets/front/images/blog/4.jpg";
 import blog5 from "@/assets/front/images/blog/5.jpg";
 import Image from "next/image";
+import { TiArrowLeftThick } from "react-icons/ti";
+
+import { CiCalendar } from "react-icons/ci";
+import { FiUser } from "react-icons/fi";
 
 const Blog = () => {
   const blogRefs = useRef([]);
@@ -87,10 +91,10 @@ const Blog = () => {
                       <div className={style.blogContent}>
                         <div className={style.blogMeta}>
                           <a href="#">
-                            <i className="far fa-user" /> By Frutin{" "}
+                            <iFiUser /> By Frutin{" "}
                           </a>
                           <a href="#">
-                            <i className="far fa-calendar" /> 21 March, 2024
+                            <CiCalendar /> 21 March, 2024
                           </a>
                         </div>
                         <h3 className={style.boxTitle}>
@@ -99,7 +103,7 @@ const Blog = () => {
                         <p>{blog.para}</p>
                         <a href="#" className={style.readMoreBtn}>
                           Read More
-                          <i className="fas fa-chevrons-right ms-2" />
+                          <TiArrowLeftThick />
                         </a>
                       </div>
                     </div>
