@@ -1,0 +1,72 @@
+@import "../assets/front/styles/variable";
+@import "../assets/front/styles/mixin";
+.homeBanner {
+  width: 100%;
+  overflow: hidden;
+  padding: 10rem 0;
+  position: relative;
+  z-index: 1;
+  background: $sccondary;
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: -13px;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 60px;
+  //   background: url(../../src/assets/front/images/pattern-1.png);
+  //   background-repeat: no-repeat;
+  // }
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   bottom: -1rem;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 70px;
+  //   background: url(../../src/assets/front/images/pattern-2.png);
+  // }
+}
+.bannerImg {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0 6.25rem 0 6.25rem;
+    z-index: -1;
+    background-color: $primary;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+.bannSlogan {
+  padding-right: 4rem;
+  position: relative;
+  h2 {
+    font-size: 3.75rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: $primary;
+  }
+  h4 {
+    font-weight: 400;
+    font-size: 2.8rem;
+    color: $white;
+  }
+  p {
+    margin-bottom: 3rem;
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .order {
+    margin-top: 1rem;
+  }
+}

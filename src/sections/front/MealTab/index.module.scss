@@ -1,0 +1,23 @@
+@import "../../../assets/front/styles/variable";
+@import "../../../assets/front/styles/mixin";
+.mealTab {
+  li {
+    &:not(:last-child) {
+      margin-left: 1rem;
+    }
+  }
+  a {
+    display: block;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    background-color: $primary;
+    color: $white;
+    font-family: "Heebo";
+    font-weight: 400;
+    &.active,
+    &:hover {
+      background-color: $lightGray-2;
+      color: $dark;
+    }
+  }
+}

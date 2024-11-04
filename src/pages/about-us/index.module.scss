@@ -1,0 +1,67 @@
+@import "../../assets/front/styles/variable";
+@import "../../assets/front/styles/mixin";
+
+.aboutSection {
+  padding: 4rem 0;
+  font-family: "Heebo";
+  font-weight: 400;
+}
+.aboutTitle {
+  h2 {
+    color: $primary;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+  }
+}
+.aboutTop {
+  margin-bottom: 2rem;
+}
+.aboutTopRight {
+  flex: 0 0 360px;
+  max-width: 360px;
+  h4 {
+    font-weight: 400;
+    font-size: 2.25rem;
+    text-align: center;
+  }
+}
+.aboutTopLeft {
+  flex: 1 0 0%;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  border-right: $dark 1px solid;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+
+.setsUsApart {
+  text-align: center;
+}
+
+.setsUsApart {
+  h2 {
+    color: $primary;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+  }
+}
+.setsUsApartInner {
+  h4 {
+    font-weight: 400;
+  }
+  p {
+    font-size: 1.325rem;
+    line-height: 1.2;
+    color: $dark;
+  }
+  span {
+    display: inline-block;
+    img {
+      display: block;
+      width: 2.75rem;
+      height: auto;
+    }
+  }
+}

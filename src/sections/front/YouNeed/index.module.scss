@@ -1,0 +1,34 @@
+@import "../../../assets/front/styles/variable";
+@import "../../../assets/front/styles/mixin";
+.youNeed {
+  position: relative;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 8rem 0;
+  .youNeedInner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    background-image: url(../../../assets/front/images/you-need-left.png);
+    height: 100%;
+    width: 18.25rem;
+    left: 0;
+    top: 0;
+    background-size: cover;
+  }
+  &:after {
+    position: absolute;
+    content: "";
+    background-image: url(../../../assets/front/images/you-need-right.png);
+    height: 100%;
+    width: 18.25rem;
+    right: 0;
+    top: 0;
+    background-size: cover;
+  }
+}

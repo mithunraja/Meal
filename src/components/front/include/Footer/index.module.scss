@@ -1,0 +1,65 @@
+@import "../../../../assets/front/styles/variable";
+@import "../../../../assets/front/styles/mixin";
+
+.footer {
+  padding: 2rem 0 3rem;
+  border-top: $lightGray 1px solid;
+}
+
+.fNav {
+  h5 {
+    margin-bottom: 1.125rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $dark;
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 0.625rem;
+    }
+  }
+  a {
+    display: block;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .fSocial {
+    margin-top: 2rem;
+    ul {
+      li {
+        &:not(:last-child) {
+          margin-right: 1.5rem;
+        }
+        a {
+          font-size: 1.125rem;
+        }
+      }
+    }
+  }
+}
+
+.inputArea {
+  position: relative;
+  .input1 {
+    @include input-4;
+  }
+  button {
+    position: absolute;
+    background-color: $sccondary;
+    color: #fff;
+    top: 0;
+    right: 0;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+.footerLogo {
+  margin-bottom: 2rem;
+  img {
+    display: inline-block;
+    max-width: 150px;
+    height: auto;
+  }
+}

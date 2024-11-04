@@ -1,0 +1,107 @@
+@import "../../assets/front/styles/variable";
+@import "../../assets/front/styles/mixin";
+.changeAddMealWrap {
+  padding: 4rem 0;
+}
+.changeAddContainer {
+  padding: 0 2rem;
+}
+.srcContainer {
+  max-width: 300px;
+  margin: 0 auto 2rem;
+}
+
+.rowBox {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: $white;
+  box-shadow: 5px 5px 34px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Heebo";
+  font-weight: 400;
+}
+.rowBoxRight {
+  flex: 0 0 45%;
+  max-width: 45%;
+  img {
+    border-radius: 0.75rem;
+  }
+}
+.rowBoxLeft {
+  flex: 0 0 55%;
+  max-width: 55%;
+  padding: 0 0.625rem;
+}
+.rowBoxLeftTop {
+  width: 100%;
+  h5 {
+    font-size: 1.125rem;
+    margin-bottom: 0.313rem;
+  }
+}
+.calProtin {
+  ul {
+    li {
+      span {
+        display: block;
+        padding: 0.213rem 0.313rem;
+        border-radius: 0.313rem;
+        font-size: 0.813rem;
+        color: $white;
+        font-weight: 300;
+        &.calories {
+          background: $light-green;
+        }
+        &.protin {
+          background: $red;
+        }
+      }
+    }
+  }
+}
+.description {
+  text-align: center;
+  padding: 1rem 0;
+  font-family: "Heebo";
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: $dark;
+}
+.rowBoxLeftBottom {
+  width: 100%;
+  color: $black;
+  .plus {
+    display: block;
+    &:hover {
+      background: $lightGray-2;
+      img {
+        transform: scale(0.8);
+      }
+    }
+    img {
+      width: 2rem;
+      height: auto;
+      display: block;
+      transition: all ease-in-out 0.5s;
+    }
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.boxContainer {
+  margin-bottom: 2rem;
+}
+.dishesBtn {
+  background-color: $primary;
+  color: $white;
+  padding: 0.713rem 1rem;
+  border-radius: 0.5rem;
+  font-family: "Heebo";
+  font-weight: 200;
+  &:hover {
+    background: $sccondary;
+  }
+}
