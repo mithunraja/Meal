@@ -1,0 +1,29 @@
+@import "../../../../assets/front/styles/variable";
+@import "../../../../assets/front/styles/mixin";
+.InnerBanner {
+  position: relative;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  height: 18.75rem;
+  .youNeedInner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    background: $sccondary;
+    height: 100%;
+    width: 100%;
+    opacity: 0.53;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+  h1 {
+    color: $white;
+    font-size: 3.5rem;
+  }
+}
