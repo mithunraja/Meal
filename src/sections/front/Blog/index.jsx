@@ -42,28 +42,28 @@ const Blog = () => {
   const blogs = [
     {
       img: blog1,
-      title: "Transform Your Nutrition with Organic Meal",
-      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+      title: "שנה את התזונה שלך עם ארוחה אורגנית",
+      para: "Lorem Ipsum הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. לורם איפסום היה",
     },
     {
       img: blog2,
-      title: "Stay Fit with Healthy Food Choices",
-      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+      title: "הישאר בכושר עם אפשרויות מזון בריא",
+      para: "Lorem Ipsum הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. לורם איפסום היה",
     },
     {
       img: blog3,
-      title: "Explore Delicious Vegan Options",
-      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+      title: "חקור אפשרויות טבעוניות טעימות",
+      para: "Lorem Ipsum הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. לורם איפסום היה",
     },
     {
       img: blog4,
-      title: "The Benefits of Organic Ingredients",
-      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+      title: "היתרונות של מרכיבים אורגניים",
+      para: "Lorem Ipsum הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. לורם איפסום היה",
     },
     {
       img: blog5,
-      title: "Food that Nourishes and Heals",
-      para: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
+      title: "מזון מזין ומרפא",
+      para: "Lorem Ipsum הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. לורם איפסום היה",
     },
   ];
 
@@ -91,7 +91,7 @@ const Blog = () => {
                       <div className={style.blogContent}>
                         <div className={style.blogMeta}>
                           <a href="#">
-                            <iFiUser /> By Frutin{" "}
+                            <FiUser /> By Frutin{" "}
                           </a>
                           <a href="#">
                             <CiCalendar /> 21 March, 2024
@@ -102,7 +102,7 @@ const Blog = () => {
                         </h3>
                         <p>{blog.para}</p>
                         <a href="#" className={style.readMoreBtn}>
-                          Read More
+                          קרא עוד
                           <TiArrowLeftThick />
                         </a>
                       </div>

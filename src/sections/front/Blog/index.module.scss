@@ -3,9 +3,9 @@
 
 .blogSection {
   padding: 4rem 0;
-  background-color: $sccondary;
+  background-color: $primary;
   h2 {
-    color: $white;
+    color: $sccondary;
     // font-size: 1.875rem;
     display: inline-block;
     padding-bottom: 5px;
@@ -83,8 +83,18 @@
   }
   .readMoreBtn {
     @include mainBtn;
-    color: $white;
+    background: $primary;
+    color: $sccondary;
     font-size: 1.125rem;
     padding: 0.8rem 2rem;
+    &:hover {
+      background: $sccondary;
+      color: $white;
+    }
+    svg {
+      position: relative;
+      top: -2px;
+      font-size: 1rem;
+    }
   }
 }

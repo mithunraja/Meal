@@ -6,13 +6,13 @@
 .orderBtn {
   padding: 0.5rem 3rem;
   border-radius: 0.625rem;
-  background-color: $primary;
+  background-color: $sccondary;
   font-size: 1.5rem;
   font-weight: 600;
   font-family: "Heebo";
   color: $white;
   &:hover {
-    background-color: $yellow;
-    color: $dark;
+    background-color: $white;
+    color: $sccondary;
   }
 }

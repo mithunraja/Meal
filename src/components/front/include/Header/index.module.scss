@@ -7,21 +7,15 @@
   z-index: 3;
   transition: all 0.3s ease-in-out;
   padding: 0.5rem 0;
-  background: $bg-third-color;
+  background: $white;
   &.sticky {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0 10px -5px;
   }
-  &.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-
   .logo {
     width: 5.813rem;
     a {
@@ -38,17 +32,18 @@
       // display: flex;
       > li {
         &:not(:last-child) {
-          margin-left: 3rem;
+          margin-left: 2.5rem;
         }
         > a {
-          color: $white;
-          font-size: 1rem;
+          color: $gray;
+          font-size: 1.125rem;
           display: block;
           text-align: center;
           white-space: nowrap;
           position: relative;
           padding: 8px 0;
           letter-spacing: 1px;
+          font-weight: 600;
           &:after {
             content: "";
             position: absolute;
@@ -58,19 +53,16 @@
             transform: scale(0, 1);
             transform-origin: right;
             transition: transform 0.4s ease;
-            height: 1px;
+            height: 2px;
             width: 100%;
           }
           &:hover,
           &.active {
-            color: $primary;
+            color: $sccondary;
             &::after {
-              -webkit-transform: scale(1, 1);
-              -ms-transform: scale(1, 1);
-              -o-transform: scale(1, 1);
               transform: scale(1, 1);
               transform-origin: left;
-              background: $primary;
+              background: $sccondary;
             }
           }
         }
@@ -80,14 +72,14 @@
   .account {
     position: relative;
     color: $white;
-    background: $primary;
+    background: $sccondary;
     padding: 1rem 3rem;
     border-radius: 0.313rem;
     display: inline-block;
     border: none;
     font-weight: 900;
     &:hover {
-      background-color: $sccondary;
+      background-color: $primary;
       border-radius: 0.775rem;
     }
   }

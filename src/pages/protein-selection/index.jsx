@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import style from "./index.module.scss";
 import Layout from "@/components/front/include/Layout";
 import Link from "next/link";
-import Image from "next/image";
-import edit from "@/assets/front/images/edit.svg";
 
 const ProteinSelection = () => {
+  const [activeLink, setActiveLink] = useState(null);
+
+  const handleClick = (index) => {
+    setActiveLink(index);
+  };
   return (
     <>
       <Layout>
@@ -18,10 +21,10 @@ const ProteinSelection = () => {
                 >
                   <ul className="d-flex">
                     <li>
-                      <Link href={"/"}>חטיפים</Link>
+                      <Link href={"/meal-choice"}>ארוחות</Link>
                     </li>
                     <li>
-                      <Link href={"/snack-ammount"}>חלבונים</Link>
+                      <Link href={"/dietary-prefrences"}>חלבונים</Link>
                     </li>
                     <li>
                       <Link
@@ -32,33 +35,38 @@ const ProteinSelection = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href={"/dietary-prefrences"}
-                        className={style.active}
-                      >
-                        ארוחות
-                      </Link>
+                      <Link href={"/snack-ammount"}>חטיפים</Link>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className={style.mealBodyWrap}>
                 <div
-                  className={`d-flex align-items-center ${style.bodyHeader}`}
+                  className={`d-flex justify-content-center ${style.bodyHeader}`}
                 >
-                  <div className={style.right}>
-                    <h5>בחרו את העדפת החלבונים שלכם:</h5>
-                  </div>
-                  <div className={style.left}>
-                    <Link href="">
-                      <Image alt="" src={edit} width={0} height={0} />
-                    </Link>
-                  </div>
+                  <h5>בחרו את העדפת החלבונים שלכם:</h5>
                 </div>
-                <div
-                  className={style.mealbody}
-                  style={{ minHeight: "250px" }}
-                ></div>
+                <div className={style.mealbody}>
+                  <ul className="d-flex flex-wrap justify-content-center">
+                    {[
+                      { label: "בשר", id: 1 },
+                      { label: "דגים", id: 2 },
+                      { label: "צמחוני", id: 3 },
+                      { label: "טבעוני", id: 4 },
+                    ].map((item, index) => (
+                      <li key={index}>
+                        <Link
+                          href="#"
+                          passHref
+                          className={activeLink === index ? style.active : ""}
+                          onClick={() => handleClick(index)}
+                        >
+                          <span>{item.label}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <div
                   className={`d-flex justify-content-center ${style.mealFooter}`}
                 >

@@ -2,13 +2,29 @@
 
 @mixin mainBtn {
   position: relative;
-  color: $sccondary;
+  color: $white;
+  background: $sccondary;
+  padding: 1rem 3rem;
+  border-radius: 0.313rem;
+  display: inline-block;
+  border: none;
+  font-weight: 600;
+
+  &:hover {
+    background: $primary;
+    color: $white;
+  }
+}
+
+@mixin primaryBtn {
+  position: relative;
+  color: $white;
   background: $primary;
   padding: 1rem 3rem;
   border-radius: 0.313rem;
   display: inline-block;
   border: none;
-  font-weight: 900;
+  font-weight: 600;
 
   &:hover {
     background: $sccondary;

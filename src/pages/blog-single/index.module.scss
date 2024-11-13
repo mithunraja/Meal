@@ -72,6 +72,7 @@
 }
 .blogSingle {
   padding: 3rem 0;
+  background: $bg-3;
 }
 .blogSingleContainer {
   padding: 0 3rem;
@@ -83,6 +84,7 @@
   }
 }
 .relatedPostInner {
+  background: $white;
   border: $lightGray 1px solid;
   padding: 1rem;
   border-radius: 0.5rem;

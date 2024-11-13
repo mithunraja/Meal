@@ -2,91 +2,88 @@
 @import "../../assets/front/styles/mixin";
 
 .mealChoice {
-  padding: 4rem 0;
+  padding: 6rem 0 9rem;
   font-family: "Heebo";
   font-weight: 400;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(223, 236, 203, 0.77);
+    z-index: -1;
+  }
 }
 .mealTab {
   li {
     &:not(:last-child) {
-      margin-left: 1rem;
+      margin-left: 1.5rem;
     }
   }
   a {
     display: block;
-    padding: 0.413rem 1rem;
+    padding: 1rem 2rem;
     border-radius: 0.757rem;
-    background-color: $lightGray-2;
+    background-color: $white;
     color: $gray-2;
     font-size: 1rem;
+    font-weight: 600;
     &.active,
     &:hover {
       background-color: $primary;
-      color: $white;
+      color: $sccondary;
     }
   }
 }
 .bodyHeader {
-  margin-bottom: 0.5rem;
-  .left {
-    flex: 0 0 2.5rem;
-    max-width: 2.5rem;
-    a {
-      display: block;
-      background: $primary;
-      border-radius: 50%;
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  }
-  .right {
-    flex: 1 0 0%;
-    padding-left: 1rem;
-    text-align: center;
-    h5 {
-      margin-bottom: 0;
-      font-weight: 500;
-      color: $primary;
-      font-size: 1.11rem;
-    }
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: $sccondary;
+    font-size: 1.75rem;
   }
 }
-
 .mealBodyWrap {
   margin: 0 auto;
-  max-width: 14.25rem;
+  // max-width: 14.25rem;
   width: 100%;
-  padding: 2rem 0 0;
+  padding: 3rem 0 0;
 }
 
 .mealbody {
-  background: $yellow;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 2px 4px 0;
-  border-radius: 0.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5rem;
+  li {
+    flex-grow: 1;
+    padding: 0 1rem;
+  }
 
   a {
     display: block;
     text-align: center;
     font-weight: 600;
     color: $primary;
-    padding: 1rem 0;
-    font-size: 1.25rem;
+    padding: 1.7rem 0;
+    font-size: 1.5rem;
     transition: color 0.3s ease;
+    background: $white;
+    border-radius: 0.5rem;
 
     &.active {
-      color: $sccondary;
+      color: $white;
+      background: $primary;
     }
   }
 }
 
 .nextBtn {
-  @include primaryBtn;
-  font-size: 1.25rem;
-  border-radius: 1rem;
-  font-weight: 400;
-  line-height: 2.5;
-  padding: 0 1.5rem;
+  @include mainBtn;
+  font-size: 1.15rem;
+  padding: 1rem 7.5rem;
 }

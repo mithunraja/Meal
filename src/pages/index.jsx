@@ -3,9 +3,6 @@ import Image from "next/image";
 import style from "./index.module.scss";
 import Layout from "@/components/front/include/Layout";
 import banner from "@/assets/front/images/ban-1.png";
-import OrderBtn from "@/sections/front/Order";
-import Recommendations from "@/sections/front/Recommendations";
-import FooterTop from "@/sections/front/FooterTop";
 import Link from "next/link";
 import OurMenu from "@/sections/front/OurMenu";
 import ChooseUs from "@/sections/front/ChooseUs";
@@ -63,8 +60,7 @@ export default function Home() {
                     תזונתיים גבוהים.{" "}
                   </p>
                   <div className={style.order}>
-                    <OrderBtn />
-                    {/* <Link href={"#"}>להזמנה</Link> */}
+                    <Link href={"#"}>להזמנה</Link>
                   </div>
                 </div>
               </div>
