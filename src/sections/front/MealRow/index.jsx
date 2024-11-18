@@ -1,191 +1,134 @@
 import React from "react";
 import style from "./index.module.scss";
-
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import meal from "@/assets/front/images/meal.jpg";
 import slider1 from "@/assets/front/images/slider-1.jpg";
-
-import rightArrow from "@/assets/front/images/right-arrow.svg";
-import leftArrow from "@/assets/front/images/left-arrow.svg";
-
+import rightArrow from "@/assets/front/images/r-arrow-w.svg";
+import leftArrow from "@/assets/front/images/l-arrow-w.svg";
 import parse from "html-react-parser";
 import Link from "next/link";
 
-const NextArrow = ({ onClick }) => {
-  return (
-    <div
-      className={`${style.customArrow} ${style.nextArrow}`} // Correctly apply the CSS module classes
-      onClick={onClick}
-    >
-      <Image alt="" src={rightArrow} width={0} height={0} />
-    </div>
-  );
+const NextArrow = ({ onClick }) => (
+  <div className={`${style.customArrow} ${style.nextArrow}`} onClick={onClick}>
+    <Image alt="" src={rightArrow} width={0} height={0} />
+  </div>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <div className={`${style.customArrow} ${style.prevArrow}`} onClick={onClick}>
+    <Image alt="" src={leftArrow} width={0} height={0} />
+  </div>
+);
+
+const blogs = [
+  {
+    img: meal,
+    title: "ארוחה",
+    para: "הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. הוא פשוט טקסט דמה של תעשיית הדפוס.",
+  },
+  {
+    img: meal,
+    title: "ארוחה",
+    para: "הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. הוא פשוט טקסט דמה של תעשיית הדפוס.",
+  },
+  {
+    img: meal,
+    title: "ארוחה",
+    para: "הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. הוא פשוט טקסט דמה של תעשיית הדפוס.",
+  },
+  {
+    img: meal,
+    title: "ארוחה",
+    para: "הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. הוא פשוט טקסט דמה של תעשיית הדפוס.",
+  },
+  {
+    img: meal,
+    title: "ארוחה",
+    para: "הוא פשוט טקסט דמה של תעשיית הדפוס והקביעה. הוא פשוט טקסט דמה של תעשיית הדפוס.",
+  },
+];
+
+const mealSlider = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  dots: false,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
 };
 
-// Custom Previous Arrow Component
-const PrevArrow = ({ onClick }) => {
-  return (
-    <div
-      className={`${style.customArrow} ${style.prevArrow}`} // Correctly apply the CSS module classes
-      onClick={onClick}
-    >
-      <Image alt="" src={leftArrow} width={0} height={0} />
-    </div>
-  );
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  dots: false,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
 };
 
-const MealRow = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
+const MealRow = ({ headingText }) => {
   return (
     <>
-      <div className="">
-        <div className={style.rowWrap}>
+      <div className={`mealCarosel ${style.rowWrap}`}>
+        <div className={style.rowBody}>
           <div className={style.rowHeader}>
-            <h5>יום 1 </h5>
+            <h5>{headingText}</h5>
             <p>יום 1 2 ארוחות וחטיף, 1300 קל 80 גר חלבון</p>
           </div>
-          <div className={`d-flex flex-wrap ${style.rowBody}`}>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
+
+          {/* Slider Component */}
+          <Slider {...mealSlider}>
+            {blogs.map((blog, index) => (
+              <div key={index} className={style.rowBoxWrapper}>
+                {/* Adding padding to each slide */}
+                <div className={style.rowBox} dir="rtl">
+                  <div className={style.rowBoxTop}>
+                    <Image
+                      alt=""
+                      src={blog.img}
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: "100%", height: "auto" }}
+                    />
                   </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
+                  <div className={style.rowBoxBottom}>
+                    <div className={style.rowBoxBottomTop}>
+                      <h5>{blog.title}</h5>
+                      <p>{blog.para}</p>
+                      <ul className="d-flex">
+                        <li>
+                          <span className={style.calories}>400 קלוריות</span>
+                        </li>
+                        <li>
+                          <span className={style.protin}>30 גר חלבון</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={style.rowBottom}>
+                      <ul className="d-flex">
+                        <li>
+                          <Link href="#" className={style.switch}>
+                            החלף
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="#" className={style.remove}>
+                            הסר
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
               </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+            ))}
+          </Slider>
           <div className={`d-flex justify-content-center ${style.dishSnaks}`}>
             <ul className="d-flex">
               <li>
@@ -204,875 +147,7 @@ const MealRow = () => {
             </ul>
           </div>
         </div>
-
-        <div className={style.rowWrap}>
-          <div className={style.rowHeader}>
-            <h5>יום 1 </h5>
-            <p>יום 1 2 ארוחות וחטיף, 1300 קל 80 גר חלבון</p>
-          </div>
-          <div className={`d-flex flex-wrap ${style.rowBody}`}>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`d-flex justify-content-center ${style.dishSnaks}`}>
-            <ul className="d-flex">
-              <li>
-                <Link href={"#"}>הוסף מנה</Link>
-              </li>
-              <li>
-                <Link href={"#"}>הוסף חטיף</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className={style.rowWrap}>
-          <div className={style.rowHeader}>
-            <h5>יום 1 </h5>
-            <p>יום 1 2 ארוחות וחטיף, 1300 קל 80 גר חלבון</p>
-          </div>
-          <div className={`d-flex flex-wrap ${style.rowBody}`}>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`d-flex justify-content-center ${style.dishSnaks}`}>
-            <ul className="d-flex">
-              <li>
-                <Link href={"#"}>הוסף מנה</Link>
-              </li>
-              <li>
-                <Link href={"#"}>הוסף חטיף</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className={style.rowWrap}>
-          <div className={style.rowHeader}>
-            <h5>יום 1 </h5>
-            <p>יום 1 2 ארוחות וחטיף, 1300 קל 80 גר חלבון</p>
-          </div>
-          <div className={`d-flex flex-wrap ${style.rowBody}`}>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`d-flex justify-content-center ${style.dishSnaks}`}>
-            <ul className="d-flex">
-              <li>
-                <Link href={"#"}>הוסף מנה</Link>
-              </li>
-              <li>
-                <Link href={"#"}>הוסף חטיף</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={style.rowWrap}>
-          <div className={style.rowHeader}>
-            <h5>יום 1 </h5>
-            <p>יום 1 2 ארוחות וחטיף, 1300 קל 80 גר חלבון</p>
-          </div>
-          <div className={`d-flex flex-wrap ${style.rowBody}`}>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`d-flex justify-content-center ${style.dishSnaks}`}>
-            <ul className="d-flex">
-              <li>
-                <Link href={"#"}>הוסף מנה</Link>
-              </li>
-              <li>
-                <Link href={"#"}>הוסף חטיף</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={style.rowWrap}>
-          <div className={style.rowHeader}>
-            <h5>יום 1 </h5>
-            <p>יום 1 2 ארוחות וחטיף, 1300 קל 80 גר חלבון</p>
-          </div>
-          <div className={`d-flex flex-wrap ${style.rowBody}`}>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className={`d-flex flex-wrap ${style.rowBox}`}>
-              <div className={style.rowBoxRight}>
-                <Image
-                  alt=""
-                  src={meal}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div
-                className={`d-flex align-content-between flex-wrap ${style.rowBoxLeft}`}
-              >
-                <div className={style.rowBoxLeftTop}>
-                  <h5>ארוחה</h5>
-                  <div className={style.calProtin}>
-                    <ul className="d-flex justify-content-between">
-                      <li>
-                        <span className={style.calories}>400 קלוריות</span>
-                      </li>
-                      <li>
-                        <span className={style.protin}>30 גר חלבון</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className={style.description}>
-                    {/*  */}
-                    {parse("<p>תיאור המנה</p>")}
-                  </div>
-                </div>
-                <div className={style.rowBoxLeftBottom}>
-                  <ul className="d-flex justify-content-between">
-                    <li>
-                      <Link href={"#"}>הסר</Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>החלף</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={`d-flex justify-content-center ${style.dishSnaks}`}>
-            <ul className="d-flex">
-              <li>
-                <Link href={"#"}>הוסף מנה</Link>
-              </li>
-              <li>
-                <Link href={"#"}>הוסף חטיף</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
-
       <div
         className="modal fade"
         id="exampleModal"

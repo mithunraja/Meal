@@ -68,16 +68,17 @@ p {
   color: $primary;
 }
 
-.blogCarousel {
+.blogCarousel,
+.mealCarosel {
   .slick-slide {
     padding: 0 15px; // Adds gap between slides
   }
   .slick-prev {
-    right: 50px;
+    right: 50px !important;
     z-index: 2;
   }
   .slick-next {
-    left: 50px;
+    left: 50px !important;
   }
 }
 

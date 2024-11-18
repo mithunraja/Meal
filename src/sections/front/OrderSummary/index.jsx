@@ -1,12 +1,20 @@
 import React from "react";
 import style from "./index.module.scss";
 import Link from "next/link";
+import orderBg from "@/assets/front/images/order-bgs.png";
 
 const OrderSummary = () => {
   return (
     <>
-      <div className={style.orderSummaryBox}>
-        <h3>סיכום הזמנה</h3>
+      <div
+        className={`d-flex flex-wrap justify-content-between align-items-center ${style.orderSummaryBox}`}
+      >
+        <div
+          className={style.title}
+          style={{ backgroundImage: `url(${orderBg.src})` }}
+        >
+          <h3>סיכום הזמנה</h3>
+        </div>
         <div className={style.orderSummaryBody}>
           <ul className="d-flex">
             <li>עלות:</li>
@@ -17,9 +25,7 @@ const OrderSummary = () => {
             <li>20 שח</li>
           </ul>
         </div>
-        <div
-          className={`d-flex justify-content-center ${style.orderSummaryBtm}`}
-        >
+        <div className={style.orderSummaryBtm}>
           <Link href={"#"} className={style.ProceedPayment}>
             המשך לתשלום
           </Link>

@@ -7,6 +7,8 @@ import Image from "next/image";
 import send from "@/assets/front/images/letter-send.svg";
 import call from "@/assets/front/images/call.svg";
 import mail from "@/assets/front/images/mail.svg";
+import contactBackground from "@/assets/front/images/contact-bg.jpg";
+
 const contact = () => {
   return (
     <>
@@ -14,6 +16,9 @@ const contact = () => {
         <section className={style.contactCection}>
           <div className="container">
             <div className="row">
+              <div className="col-12">
+                <h2>צור קשר</h2>
+              </div>
               <div className="col-12">
                 <div className={`d-flex flex-wrap ${style.contactBg}`}>
                   <div className={style.contactRight}>
@@ -97,6 +102,7 @@ const contact = () => {
                   </div>
                   <div
                     className={`d-flex align-content-between flex-wrap ${style.contactLeft}`}
+                    style={{ backgroundImage: `url(${contactBackground.src})` }}
                     dir="ltr"
                   >
                     <div className={style.contactLeftTop}>

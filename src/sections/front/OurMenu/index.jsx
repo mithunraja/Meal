@@ -10,6 +10,7 @@ import Image from "next/image";
 
 const OurMenu = () => {
   const settings = {
+    // rtl: true,
     dots: false, // Disable pagination dots
     arrows: true,
     infinite: true,

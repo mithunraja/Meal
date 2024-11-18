@@ -36,7 +36,7 @@ const Blog = () => {
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "80px",
-    rtl: true,
+    // rtl: true,
   };
 
   const blogs = [

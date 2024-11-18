@@ -89,16 +89,34 @@
   display: block;
   width: 100%;
   font-size: 1rem;
-  padding: 0 30px;
-  color: #464648;
-  background-color: transparent !important;
-  border-color: #464648;
-  border-radius: 30px;
+  padding: 0 1.125rem;
+  color: $gray;
+  border: $lightGray 1px solid;
+  border-radius: 0.313rem;
+  height: 3.25rem;
   &:focus,
   &:focus::after {
     outline: none;
     box-shadow: none;
-    border-color: #464648;
+    border-color: $lightGray;
+  }
+}
+
+@mixin input-2 {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0 30px;
+  color: $lightGray;
+  background-color: transparent !important;
+  border: none;
+  border-bottom: $lightGray 1px solid;
+  height: 2rem;
+  &:focus,
+  &:focus::after {
+    outline: none;
+    box-shadow: none;
+    border-color: $lightGray;
   }
 }
 
