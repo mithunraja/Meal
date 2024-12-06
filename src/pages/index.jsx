@@ -1,16 +1,18 @@
-import { useState } from "react";
-import Image from "next/image";
-import style from "./index.module.scss";
-import Layout from "@/components/front/include/Layout";
 import banner from "@/assets/front/images/ban-1.png";
-import Link from "next/link";
-import OurMenu from "@/sections/front/OurMenu";
-import ChooseUs from "@/sections/front/ChooseUs";
-import YouNeed from "@/sections/front/YouNeed";
-import Gallery from "@/sections/front/Gallery";
+import Layout from "@/components/front/include/Layout";
 import Blog from "@/sections/front/Blog";
+import ChooseUs from "@/sections/front/ChooseUs";
+import Gallery from "@/sections/front/Gallery";
+import OurMenu from "@/sections/front/OurMenu";
+import YouNeed from "@/sections/front/YouNeed";
+import { blogService, galleriesService, homeBannerService, homePageContentService } from "@/services/common.service";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import style from "./index.module.scss";
 
-export default function Home() {
+export default function Home({ bannerResponse, blogResponse, pageContentResponse, galleriesResponse }) {
+// console.log("galleriesResponse", galleriesResponse)
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -32,9 +34,9 @@ export default function Home() {
                   <div className={style.bannerImg}>
                     <Image
                       alt="Banner"
-                      src={banner}
-                      width={0}
-                      height={0}
+                      src={bannerResponse?.bg_image ? `${process.env.NEXT_PUBLIC_IMAGE_FILE_PATH}/home/banner/${bannerResponse.bg_image}` : banner}
+                      width={515}
+                      height={532}
                       className={style.image}
                       style={{
                         transform: `translate(${position.x}px, ${position.y}px)`,
@@ -51,14 +53,9 @@ export default function Home() {
                   data-aos-easing="ease-out-cubic"
                   data-aos-duration="2000"
                 >
-                  <h2>Flavorite</h2>
-                  <h4>Freshness to your doorstep</h4>
-                  <p>
-                    פלייבוריט הוקמה כפתרון חסכני, טבעי, אדמתי וארץ ישראלי על מנת
-                    לספק לאנשים אוכל ברמה גבוה מבלי לקרוע את הכיס, ולשנות את
-                    הפרדיגמה שאוכל ֿ מהיר לא יכול להיות מזין, טעים ובעל ערכים
-                    תזונתיים גבוהים.{" "}
-                  </p>
+                  <h2>{bannerResponse?.banner_heading || 'No Heading'}</h2>
+                  <h4>{bannerResponse?.banner_sub_heading || 'No Sub Heading'}</h4>
+                  <p>{bannerResponse?.banner_content || 'No Content'}</p>
                   <div className={style.order}>
                     <Link href={"#"}>להזמנה</Link>
                   </div>
@@ -67,15 +64,51 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <OurMenu />
+        <OurMenu pageContentResponse={pageContentResponse} />
         <ChooseUs />
-        <YouNeed />
-        <Gallery />
-        <Blog />
+        <YouNeed pageContentResponse={pageContentResponse} />
+        <Gallery pageContentResponse={pageContentResponse} galleriesResponse={galleriesResponse} />
+        <Blog blogResponse={blogResponse} pageContentResponse={pageContentResponse} />
 
         {/* <Recommendations />
         <FooterTop /> */}
       </Layout>
     </>
   );
+}
+
+
+export async function getServerSideProps() {
+  
+  try {
+    
+    const [bannerResponse, blogResponse, pageContentResponse, galleriesResponse] = await Promise.all([
+      homeBannerService(),
+      blogService(),
+      homePageContentService(),
+      galleriesService()
+    ]);
+
+    // console.log(galleriesResponse);
+    
+    return {
+      props: {
+        bannerResponse,
+        blogResponse: blogResponse.length ? blogResponse : [],  // Ensure an empty array if no data
+        pageContentResponse: pageContentResponse || {}, // Ensure an empty object if no content
+        galleriesResponse,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching content:", error.message);
+    return {
+      props: {
+        bannerResponse: {},
+        blogResponse: [],
+        pageContentResponse: {},
+        galleriesResponse: [],
+      },
+    };
+  }
+  
 }

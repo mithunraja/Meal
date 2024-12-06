@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
-import style from "./index.module.scss";
-import whyUsOne from "@/assets/front/images/why-us/1.svg";
-import whyUsTwo from "@/assets/front/images/why-us/2.svg";
-import whyUsThree from "@/assets/front/images/why-us/3.svg";
 import whyUs from "@/assets/front/images/why-us.png";
+import { whyChooseUsService } from "@/services/common.service";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import style from "./index.module.scss";
 
 // Reusable Box Component
 const WhyUsBox = ({ imageSrc, title, text }) => (
@@ -18,7 +16,11 @@ const WhyUsBox = ({ imageSrc, title, text }) => (
 );
 
 const ChooseUs = () => {
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [whyChooseUsData, setWhyChooseUsData] = useState([]);
+  const [sectionHeading, setSectionHeading] = useState([]);
+  const [middleImage, setMiddleImage] = useState([]);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -30,8 +32,33 @@ const ChooseUs = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const textContent =
-    "טקסט גוף לכל מה שתרצה לומר. הוסף נקודות עיקריות, ציטוטים, אנקדוטות, או אפילו סיפור מאוד מאוד קצר.";
+
+  // Fetch Why Choose Us Data
+  useEffect(() => {
+    const fetchWhyChooseUs = async () => {
+      try {
+        const response = await whyChooseUsService();
+        const whyChooseUsLists = response?.data || [];
+        //console.log("response:", whyChooseUsData);
+        if (whyChooseUsLists && whyChooseUsLists.length) {
+          setSectionHeading(whyChooseUsLists[0].section_heading || "למה לבחור בנו?");
+          setMiddleImage(
+            whyChooseUsLists[0].middle_image
+              ? `${process.env.NEXT_PUBLIC_IMAGE_FILE_PATH}/home/why_choose_us/${whyChooseUsLists[0].middle_image}`
+              : whyUs
+          );
+          setWhyChooseUsData(whyChooseUsLists[0].why_chooseus_content || []);
+        }
+      } catch (error) {
+        console.error("Error fetching Why Choose Us data:", error.message);
+      }
+    };
+
+    fetchWhyChooseUs();
+  }, []);
+
+  // const textContent =
+  //   "טקסט גוף לכל מה שתרצה לומר. הוסף נקודות עיקריות, ציטוטים, אנקדוטות, או אפילו סיפור מאוד מאוד קצר.";
 
   return (
     <section className={style.whyUs}>
@@ -39,15 +66,33 @@ const ChooseUs = () => {
         <div className="row g-4 align-items-center">
           <div className="col-12">
             <div className={style.whyUsTitle}>
-              <h2 className="wow zoomIn">למה לבחור בנו?</h2>
+              <h2 className="wow zoomIn"> {sectionHeading} </h2>
             </div>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-            <WhyUsBox
+
+            {/* Render Left Column Content */}
+            {whyChooseUsData.slice(0, Math.ceil(whyChooseUsData.length / 2)).map((item, index) => (
+              <WhyUsBox
+                key={index}
+                imageSrc={
+                  item.icon
+                    ? `${process.env.NEXT_PUBLIC_IMAGE_FILE_PATH}/home/icons/${item.icon}`
+                    : whyUs
+                }
+                width={0}
+                height={0}
+                title={item.heading || "No Title"}
+                text={item.short_content || "No Text"}
+              />
+            ))}
+
+            {/* <WhyUsBox
               imageSrc={whyUsOne}
               title="פרגית סאטאי"
               text={textContent}
             />
+
             <WhyUsBox
               imageSrc={whyUsTwo}
               title="פרגית סאטאי"
@@ -57,7 +102,8 @@ const ChooseUs = () => {
               imageSrc={whyUsThree}
               title="פרגית סאטאי"
               text={textContent}
-            />
+            /> */}
+
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12 col-12">
             <div
@@ -65,7 +111,9 @@ const ChooseUs = () => {
             >
               <Image
                 alt="whyUs"
-                src={whyUs}
+                src={middleImage}
+                width={800}
+                height={774}
                 style={{
                   transform: `translate(${position.x}px, ${position.y}px)`,
                   transition: "transform 0.1s ease-in-out",
@@ -74,7 +122,24 @@ const ChooseUs = () => {
             </div>
           </div>
           <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-            <WhyUsBox
+
+            {/* Render Right Column Content */}
+            {whyChooseUsData.slice(Math.ceil(whyChooseUsData.length / 2)).map((item, index) => (
+              <WhyUsBox
+                key={index}
+                imageSrc={
+                  item.icon
+                    ? `${process.env.NEXT_PUBLIC_IMAGE_FILE_PATH}/home/icons/${item.icon}`
+                    : whyUs
+                }
+                width={0}
+                height={0}
+                title={item.heading || "No Title"}
+                text={item.short_content || "No Text"}
+              />
+            ))}
+
+            {/* <WhyUsBox
               imageSrc={whyUsOne}
               title="פרגית סאטאי"
               text={textContent}
@@ -88,7 +153,8 @@ const ChooseUs = () => {
               imageSrc={whyUsThree}
               title="פרגית סאטאי"
               text={textContent}
-            />
+            /> */}
+
           </div>
         </div>
       </div>

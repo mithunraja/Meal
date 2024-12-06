@@ -1,15 +1,46 @@
-import React from "react";
-import style from "./index.module.scss";
-import Layout from "@/components/front/include/Layout";
-import Link from "next/link";
-import Social from "@/components/front/include/Social";
-import Image from "next/image";
-import send from "@/assets/front/images/letter-send.svg";
 import call from "@/assets/front/images/call.svg";
-import mail from "@/assets/front/images/mail.svg";
 import contactBackground from "@/assets/front/images/contact-bg.jpg";
+import send from "@/assets/front/images/letter-send.svg";
+import mail from "@/assets/front/images/mail.svg";
+import Layout from "@/components/front/include/Layout";
+import Social from "@/components/front/include/Social";
+import { contactFormService, contactInfoService } from "@/services/common.service";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import style from "./index.module.scss";
 
-const contact = () => {
+const contact = ({ contactInfoResponse }) => {
+
+  const { register, reset, formState: { errors }, handleSubmit } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+
+      const response = await contactFormService(data);
+      
+      // Show success alert
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: response.response,
+      });
+      
+      console.log("Form Submitted Successfully:", response);
+      reset();
+    } catch (error) {
+      const errorMessage = error.response?.data || "Something went wrong. Please try again.";
+      Swal.fire({
+        icon: "error",
+        title: "Error Submitting Form",
+        text: JSON.stringify(errorMessage),
+      });
+
+      console.error("Error submitting form:", error.message);
+    }
+
+  };
+
   return (
     <>
       <Layout>
@@ -22,18 +53,19 @@ const contact = () => {
               <div className="col-12">
                 <div className={`d-flex flex-wrap ${style.contactBg}`}>
                   <div className={style.contactRight}>
-                    <form action="" method="get">
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="row g-5">
                         <div className="col-lg-6 col-md-6 col-sm-12">
                           <div className={style.contactRightBox}>
                             <label>שם פרטי</label>
                             <input
                               type="text"
-                              name=""
-                              id=""
                               placeholder=""
                               className={style.input}
+                              {...register("fname", { required: true })}
+                              aria-invalid={errors.fname ? "true" : "false"}
                             />
+                            {errors.fname?.type === 'required' && <p role="alert" className="text-danger">First name is required</p>}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12">
@@ -41,11 +73,12 @@ const contact = () => {
                             <label>שם משפחה</label>
                             <input
                               type="text"
-                              name=""
-                              id=""
                               placeholder=""
                               className={style.input}
+                              {...register("lname", { required: true })}
+                              aria-invalid={errors.lname ? "true" : "false"}
                             />
+                            {errors.lname?.type === 'required' && <p role="alert" className="text-danger">Last name is required</p>}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12">
@@ -53,11 +86,17 @@ const contact = () => {
                             <label>טלפון</label>
                             <input
                               type="text"
-                              name=""
-                              id=""
                               placeholder=""
                               className={style.input}
+                              {...register("phone", {
+                                required: "Phone number is required",
+                                pattern: {
+                                  value: /^[0-9]{10,15}$/, // Adjust the regex for your requirements
+                                  message: "Phone number must be between 10 and 15 digits",
+                                },
+                              })}
                             />
+                            {errors.phone && <p className="text-danger">{errors.phone.message}</p>}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12">
@@ -65,11 +104,19 @@ const contact = () => {
                             <label>אימייל</label>
                             <input
                               type="text"
-                              name=""
-                              id=""
                               placeholder=""
                               className={style.input}
+                              {...register("email", {
+                                required: true,
+                                pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
+                              })}
                             />
+                              {errors.email && errors.email.type === "required" && (
+                                <p className="text-danger">Email is required</p>
+                              )}
+                              {errors.email && errors.email.type === "pattern" && (
+                                <p className="text-danger">Email is not valid</p>
+                              )}
                           </div>
                         </div>
                         <div className="col-sm-12">
@@ -78,6 +125,7 @@ const contact = () => {
                             <textarea
                               placeholder="הקלד את הודעתך כאן..."
                               className={style.textarea}
+                              {...register("msg")}
                             ></textarea>
                           </div>
                         </div>
@@ -119,7 +167,7 @@ const contact = () => {
                                 sizes="100vw"
                               />
                             </span>{" "}
-                            055-5555555
+                            {contactInfoResponse?.site_phone || '055-5555555'} 
                           </li>
                           <li>
                             <span>
@@ -131,13 +179,13 @@ const contact = () => {
                                 sizes="100vw"
                               />
                             </span>{" "}
-                            Flavoritebizz@gmail.com
+                            {contactInfoResponse?.site_email || 'Flavoritebizz@gmail.com'}
                           </li>
                         </ul>
                       </div>
                     </div>
                     <div className={style.contactLeftBottom}>
-                      <Social />
+                      <Social socialLink={contactInfoResponse} />
                     </div>
                   </div>
                 </div>
@@ -151,3 +199,26 @@ const contact = () => {
 };
 
 export default contact;
+
+export async function getServerSideProps() {
+  try {
+    const contactInfoResponse = await contactInfoService();
+    //console.log("Contact Info Response:", contactInfoResponse);
+    return { 
+      props: { 
+        contactInfoResponse
+      } 
+    };
+  } catch (error) {
+    console.error("Error fetching contact info:", error.message);
+    return { 
+      props: { 
+        contactInfoResponse: {},
+      } 
+    };
+  }
+}
+
+
+
+

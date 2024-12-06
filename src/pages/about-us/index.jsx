@@ -1,16 +1,16 @@
-import { useState } from "react";
-import style from "./index.module.scss";
+import InnerBanner from "@/components/front/include/InnerBanner";
 import Layout from "@/components/front/include/Layout";
 import parse from "html-react-parser";
 import Image from "next/image";
-import InnerBanner from "@/components/front/include/InnerBanner";
-import about from "@/assets/front/images/about.jpg";
-import Link from "next/link";
+import { useState } from "react";
+import style from "./index.module.scss";
 
-import ChooseUs from "@/sections/front/ChooseUs";
 import BetterHealth from "@/sections/front/BetterHealth";
+import ChooseUs from "@/sections/front/ChooseUs";
+import { aboutService, promoService } from "@/services/common.service";
 
-const aboutUs = () => {
+const aboutUs = ({ aboutResponse, promoResponse }) => {
+
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -18,6 +18,7 @@ const aboutUs = () => {
     const y = (e.clientY - window.innerHeight / 2) / 20;
     setPosition({ x, y });
   };
+
   return (
     <>
       <Layout>
@@ -34,9 +35,9 @@ const aboutUs = () => {
                 <div className={style.aboutImg}>
                   <Image
                     alt=""
-                    src={about}
-                    width={0}
-                    height={0}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_FILE_PATH}/about/about_section/${aboutResponse?.about_image}`}
+                    width={529}
+                    height={457}
                     className={style.image}
                     style={{
                       transform: `translate(${position.x}px, ${position.y}px)`,
@@ -47,11 +48,9 @@ const aboutUs = () => {
               </div>
               <div className="col-lg-7 col-md-7 col-sm-12 col-12">
                 <div className={style.aboutTopLeft}>
-                  {parse(
-                    "<p>ותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים  פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.תזונתיים גבוהים.כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.פלבורית הוקמה כפתרון חסכוני, טבעי, ארצי וישראלי במטרה לספק לאנשים אוכל איכותי מבלי לפרוץ את הכיס ושינוי פרדיגמת המזון  לא יכול להיות מזין, טעים ובעל ערכים תזונתיים גבוהים.תזונתיים גבוהים.</p>"
-                  )}
+                  {parse(aboutResponse?.about_content || "")}
                   <div className="d-flex justify-content-center mt-4">
-                    <Link href={"#"}>קרא עוד</Link>
+                    {/* <Link href={"#"}>קרא עוד</Link> */}
                   </div>
                 </div>
               </div>
@@ -59,10 +58,35 @@ const aboutUs = () => {
           </div>
         </section>
         <ChooseUs />
-        <BetterHealth title="עלינו" />
+        <BetterHealth promoResponse={promoResponse} title="עלינו" />
       </Layout>
     </>
   );
 };
 
 export default aboutUs;
+
+
+export async function getServerSideProps() {
+  try {
+    const [aboutResponse, promoResponse] = await Promise.all([
+      aboutService(),
+      promoService(),
+    ]);
+    //console.log(aboutResponse, promoResponse);
+    return {
+      props: {
+        aboutResponse,
+        promoResponse,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching content:", error.message);
+    return {
+      props: {
+        aboutResponse: {},
+        promoResponse: {},
+      },
+    };
+  }
+}

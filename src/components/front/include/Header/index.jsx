@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import style from "./index.module.scss";
-import Image from "next/image";
 import logo from "@/assets/front/images/logo.png";
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
+import style from "./index.module.scss";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -46,7 +46,7 @@ const Header = () => {
                     <Link href={"/about-us"}>אודותינו</Link>
                   </li>
                   <li>
-                    <Link href={"/articles"}>מאמרים</Link>
+                    <Link href={"/blog"}>מאמרים</Link>
                   </li>
                   <li>
                     <Link href={"#"}>מומלצי השבוע</Link>

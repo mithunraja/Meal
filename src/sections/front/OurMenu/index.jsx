@@ -1,14 +1,13 @@
-import React from "react";
-import Slider from "react-slick";
-import style from "./index.module.scss";
 import menuImg1 from "@/assets/front/images/menu-1.png";
 import menuImg2 from "@/assets/front/images/menu-2.png";
 import menuImg3 from "@/assets/front/images/menu-3.png";
 import menuImg4 from "@/assets/front/images/menu-4.png";
 import menuImg5 from "@/assets/front/images/menu-5.png";
 import Image from "next/image";
+import Slider from "react-slick";
+import style from "./index.module.scss";
 
-const OurMenu = () => {
+const OurMenu = ({ pageContentResponse }) => {
   const settings = {
     // rtl: true,
     dots: false, // Disable pagination dots
@@ -24,7 +23,7 @@ const OurMenu = () => {
       <div className="container-xxl">
         <div className="row">
           <div className="col-12">
-            <h2 className="wow zoomIn">חקור את התפריט שלנו</h2>
+            <h2 className="wow zoomIn"> {pageContentResponse?.menu_section_heading || 'No Heading'} </h2>
             <div className={style.menuSliderArea}>
               <Slider {...settings}>
                 <div
