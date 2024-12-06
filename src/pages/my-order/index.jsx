@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import style from "./index.module.scss";
-import Layout from "@/components/front/include/Layout";
 import userImg from "@/assets/front/images/user-img.jpg";
+import Layout from "@/components/front/include/Layout";
+import PostOrder from "@/sections/front/PostOrder";
 import Image from "next/image";
 import Link from "next/link";
-import { TfiTruck } from "react-icons/tfi";
+import { useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
-import PostOrder from "@/sections/front/PostOrder";
+import { TfiTruck } from "react-icons/tfi";
+import style from "./index.module.scss";
 
 const MyOrder = () => {
   const [selectedGender, setSelectedGender] = useState("1");
@@ -132,7 +132,7 @@ const MyOrder = () => {
                       </div>
                     </div>
                     <div className={style.fromGroup}>
-                      <h5>דוא"ל</h5>
+                      <h5>{`דוא"ל`}</h5>
                       <div className={style.fromWrapInner}>
                         <input
                           type="text"
