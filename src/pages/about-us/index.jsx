@@ -9,7 +9,7 @@ import BetterHealth from "@/sections/front/BetterHealth";
 import ChooseUs from "@/sections/front/ChooseUs";
 import { aboutService, promoService } from "@/services/common.service";
 
-const aboutUs = ({ aboutResponse, promoResponse }) => {
+const AboutUs = ({ aboutResponse, promoResponse }) => {
 
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -64,7 +64,7 @@ const aboutUs = ({ aboutResponse, promoResponse }) => {
   );
 };
 
-export default aboutUs;
+export default AboutUs;
 
 
 export async function getServerSideProps() {

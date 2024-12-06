@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import style from "./index.module.scss";
 
-const contact = ({ contactInfoResponse }) => {
+const Contact = ({ contactInfoResponse }) => {
 
   const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
@@ -198,7 +198,7 @@ const contact = ({ contactInfoResponse }) => {
   );
 };
 
-export default contact;
+export default Contact;
 
 export async function getServerSideProps() {
   try {

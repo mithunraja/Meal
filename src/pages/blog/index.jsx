@@ -9,7 +9,7 @@ import { FiUser } from "react-icons/fi";
 import { TiArrowLeftThick } from "react-icons/ti";
 import style from "./index.module.scss";
 
-const blog = ({ blogResponse }) => {
+const Blog = ({ blogResponse }) => {
 
   const blogRefs = useRef([]);
 
@@ -99,7 +99,7 @@ const blog = ({ blogResponse }) => {
   );
 };
 
-export default blog;
+export default Blog;
 
 export async function getServerSideProps() {
   try {
