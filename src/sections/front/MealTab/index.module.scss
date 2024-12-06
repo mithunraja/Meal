@@ -1,0 +1,28 @@
+@import "../../../assets/front/styles/variable";
+@import "../../../assets/front/styles/mixin";
+.mealTab {
+  h4 {
+    text-align: center;
+    color: $sccondary;
+    margin-bottom: 1rem;
+  }
+  li {
+    &:not(:last-child) {
+      margin-left: 1rem;
+    }
+  }
+  a {
+    display: block;
+    padding: 1.5rem 3rem;
+    border-radius: 0.5rem;
+    background-color: $white;
+    color: $dark;
+    font-family: "Heebo";
+    font-weight: 400;
+    &.active,
+    &:hover {
+      background-color: $sccondary;
+      color: $white;
+    }
+  }
+}

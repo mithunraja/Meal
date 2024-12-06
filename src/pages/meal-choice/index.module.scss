@@ -1,0 +1,90 @@
+@import "../../assets/front/styles/variable";
+@import "../../assets/front/styles/mixin";
+
+.mealChoice {
+  padding: 6rem 0 9rem;
+  font-family: "Heebo";
+  font-weight: 400;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(223, 236, 203, 0.77);
+    z-index: -1;
+  }
+}
+.mealTab {
+  li {
+    &:not(:last-child) {
+      margin-left: 1.5rem;
+    }
+  }
+  a {
+    display: block;
+    padding: 1rem 2rem;
+    border-radius: 0.757rem;
+    background-color: $white;
+    color: $gray-2;
+    font-size: 1rem;
+    font-weight: 600;
+    &.active,
+    &:hover {
+      background-color: $primary;
+      color: $sccondary;
+    }
+  }
+}
+.bodyHeader {
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: $sccondary;
+    font-size: 1.75rem;
+  }
+}
+.mealBodyWrap {
+  margin: 0 auto;
+  // max-width: 14.25rem;
+  width: 100%;
+  padding: 3rem 0 0;
+}
+
+.mealbody {
+  margin-bottom: 5rem;
+  li {
+    flex: 0 0 19.375rem;
+    max-width: 19.375rem;
+    padding: 0 1rem;
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    color: $primary;
+    padding: 1.5rem 0;
+    font-size: 2rem;
+    transition: color 0.3s ease;
+    background: $white;
+    border-radius: 0.5rem;
+
+    &.active {
+      color: $white;
+      background: $primary;
+    }
+  }
+}
+
+.nextBtn {
+  @include mainBtn;
+  font-size: 1.15rem;
+  padding: 1rem 7.5rem;
+}

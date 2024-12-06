@@ -1,0 +1,50 @@
+@import "../../../assets/front/styles/variable";
+@import "../../../assets/front/styles/mixin";
+.recommendations {
+  padding: 4rem 0;
+}
+.title {
+  h2 {
+    text-align: center;
+    color: $dark;
+    // -webkit-text-stroke-width: 1px;
+    // -webkit-text-stroke-color: #000;
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: "Heebo";
+  }
+}
+.recommendationsBox {
+  position: relative;
+  padding: 0 3rem;
+  direction: ltr;
+  color: $gray-2;
+  text-align: center;
+  span {
+    width: 4rem;
+    height: 4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary;
+    border-radius: 50%;
+    margin: 1.25rem;
+    img {
+      width: 2rem;
+      height: auto;
+    }
+  }
+  h4 {
+    text-align: center;
+    color: $dark;
+    font-weight: 600;
+    font-family: "Heebo";
+    font-size: 1.55rem;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .recommendationsBox {
+    padding-right: 3rem;
+  }
+}

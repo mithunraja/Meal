@@ -1,0 +1,24 @@
+@import "../../assets/front/styles/variable";
+@import "../../assets/front/styles/mixin";
+.mealTabSection {
+  background: $bg-12;
+  padding: 2rem 0;
+}
+.mealAmount {
+  padding: 3rem 0;
+  background: $bg-7;
+}
+.mealTabWrap {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+.mealAmountContainer {
+  padding: 0 2rem;
+}
+
+.orderSummarySection {
+  position: sticky;
+  bottom: 0;
+  z-index: 99;
+}

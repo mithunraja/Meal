@@ -1,0 +1,95 @@
+@import "../../../assets/front/styles/variable";
+@import "../../../assets/front/styles/mixin";
+
+.whyUs {
+  padding: 8rem 0;
+  background-color: $bg-lightGreen;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+  .roundedBg {
+    height: 56.25rem;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.91);
+    filter: blur(75px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  &:before {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    height: 5.5rem;
+    width: 100%;
+    background: url(../../../assets/front/images/top.svg) center top no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+  }
+  &:after {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    height: 5.5rem;
+    width: 100%;
+    background: url(../../../assets/front/images/bottom.svg) center top
+      no-repeat;
+    background-size: cover;
+    bottom: -2px;
+    left: 0;
+  }
+}
+.whyUsTitle {
+  h2 {
+    font-size: 2.188rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+}
+
+.whyUsBox {
+  padding: 2rem;
+  border-radius: 1.875rem;
+  // background-color: $bg-primary;
+  span {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
+    color: #fff;
+    background-color: $primary;
+    line-height: 3rem;
+    display: inline-flex;
+    border-radius: 0 1.25rem 0 1.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    img {
+      max-width: 78%;
+      display: block;
+      height: auto;
+    }
+  }
+  p {
+    // color: $bg-third-color;
+    font-weight: 300;
+  }
+}
+
+.whyUsBoxImg {
+  padding: 0 1rem;
+  img {
+    width: 100%;
+    height: auto;
+    transform: scale(1.1);
+  }
+}

@@ -1,0 +1,86 @@
+@import "../../../../assets/front/styles/variable";
+@import "../../../../assets/front/styles/mixin";
+
+.mainHeader {
+  top: -100px;
+  width: 100%;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+  padding: 0.5rem 0;
+  background: $white;
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 0 10px -5px;
+  }
+  .logo {
+    width: 5.813rem;
+    a {
+      display: block;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .nav {
+    padding: 0 3rem;
+    > ul {
+      // display: flex;
+      > li {
+        &:not(:last-child) {
+          margin-left: 2.5rem;
+        }
+        > a {
+          color: $gray;
+          font-size: 1.125rem;
+          display: block;
+          text-align: center;
+          white-space: nowrap;
+          position: relative;
+          padding: 8px 0;
+          letter-spacing: 1px;
+          font-weight: 600;
+          &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background: $white;
+            transform: scale(0, 1);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+            height: 2px;
+            width: 100%;
+          }
+          &:hover,
+          &.active {
+            color: $sccondary;
+            &::after {
+              transform: scale(1, 1);
+              transform-origin: left;
+              background: $sccondary;
+            }
+          }
+        }
+      }
+    }
+  }
+  .account {
+    position: relative;
+    color: $white;
+    background: $sccondary;
+    padding: 1rem 3rem;
+    border-radius: 0.313rem;
+    display: inline-block;
+    border: none;
+    font-weight: 900;
+    &:hover {
+      background-color: $primary;
+      border-radius: 0.775rem;
+    }
+  }
+}

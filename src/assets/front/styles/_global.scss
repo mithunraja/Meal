@@ -1,0 +1,109 @@
+@import "../styles/variable";
+@import "../styles/mixin";
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline-style: none !important;
+}
+
+html,
+body {
+  max-width: 100vw;
+  // overflow-x: hidden;
+  height: 100%;
+  direction: rtl;
+}
+
+/* body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+  } */
+body {
+  color: $dark;
+  background: $white;
+  font-size: 0.938rem;
+  margin: 0 !important;
+  font-family: "Heebo";
+  font-weight: 400;
+}
+
+a,
+button {
+  color: inherit;
+  text-decoration: none;
+  transition: all ease-in-out 0.4s;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark;
+  font-weight: bold;
+  margin-bottom: 0.625rem;
+}
+
+ul,
+p {
+  padding: 0;
+  margin: 0;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-size: 2.5rem;
+  color: $primary;
+}
+
+.blogCarousel,
+.mealCarosel {
+  .slick-slide {
+    padding: 0 15px; // Adds gap between slides
+  }
+  .slick-prev {
+    right: 50px !important;
+    z-index: 2;
+  }
+  .slick-next {
+    left: 50px !important;
+  }
+}
+
+.slideItem {
+  padding: 20px; // Adjust padding within each slide as needed
+  text-align: center;
+}
+
+h1 {
+}
+
+h2 {
+  color: $sccondary;
+  font-size: 2.813rem;
+  padding: 0 0 0.938rem;
+  position: relative;
+  font-weight: bold;
+  margin: 0;
+  font-family: "Heebo";
+}
+h3 {
+}
+h4 {
+}
+h5 {
+}
+h6 {
+}

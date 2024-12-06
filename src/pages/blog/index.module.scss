@@ -1,0 +1,81 @@
+@import "../../assets/front/styles/variable";
+@import "../../assets/front/styles/mixin";
+
+.articles {
+  padding: 2rem 0;
+}
+
+.blogBlock {
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  background-color: $white;
+  padding: 30px;
+  position: relative;
+  z-index: 3;
+  .blogImg {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    img {
+      width: 100%;
+      height: auto;
+      transition: 0.4s ease-in-out;
+    }
+  }
+  .blogMeta {
+    margin: 0 0 1rem 0;
+    a {
+      &:not(:first-child) {
+        padding-right: 20px;
+        &:after {
+          content: "";
+          height: 1rem;
+          width: 1px;
+          background-color: #d8dde1;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          margin-top: -8px;
+        }
+      }
+      display: inline-block;
+      font-size: 0.875rem;
+      position: relative;
+      margin-right: 16px;
+      i {
+        margin-left: 6px;
+        color: $bg-green;
+      }
+    }
+  }
+  .boxTitle {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    padding: 0;
+    // margin-top: -0.32em;
+    a {
+      color: $sccondary;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+  p {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+  }
+  .readMoreBtn {
+    @include mainBtn;
+    color: $white;
+    font-size: 1.125rem;
+    padding: 0.8rem 2rem;
+  }
+}
+
+.articleContainer {
+  padding: 0 3rem;
+}

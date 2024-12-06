@@ -1,0 +1,66 @@
+@import "../../assets/front/styles/variable";
+@import "../../assets/front/styles/mixin";
+
+.aboutSection {
+  padding: 4rem 0;
+  font-family: "Heebo";
+  font-weight: 400;
+}
+.aboutTitle {
+  h2 {
+    color: $sccondary;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+  }
+}
+.aboutTop {
+  margin-bottom: 2rem;
+}
+.aboutImg {
+  img {
+    max-width: 100%;
+    display: block;
+    border-radius: 0 100px;
+  }
+}
+.aboutTopLeft {
+  font-size: 1rem;
+  line-height: 1.6;
+  a {
+    color: $dark;
+    font-weight: 800;
+    text-decoration: underline;
+  }
+}
+
+.setsUsApart {
+  text-align: center;
+}
+
+.setsUsApart {
+  h2 {
+    color: $primary;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+  }
+}
+.setsUsApartInner {
+  h4 {
+    font-weight: 400;
+  }
+  p {
+    font-size: 1.325rem;
+    line-height: 1.2;
+    color: $dark;
+  }
+  span {
+    display: inline-block;
+    img {
+      display: block;
+      width: 2.75rem;
+      height: auto;
+    }
+  }
+}

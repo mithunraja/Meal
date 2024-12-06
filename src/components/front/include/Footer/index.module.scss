@@ -1,0 +1,60 @@
+@import "../../../../assets/front/styles/variable";
+@import "../../../../assets/front/styles/mixin";
+
+.footer {
+  padding: 3rem 0 0;
+  border-top: $lightGray 1px solid;
+}
+
+.fNav {
+  li {
+    position: relative;
+    &:not(:last-child) {
+      margin-left: 1.44rem;
+      &::after {
+        content: "";
+        height: 100%;
+        width: 1px;
+        background: $sccondary;
+        position: absolute;
+        left: -0.744rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  a {
+    display: block;
+    color: $sccondary;
+    font-size: 1.25rem;
+    line-height: 1;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.fSocial {
+  margin-top: 2rem;
+  ul {
+    li {
+      margin-bottom: 0;
+      &:not(:last-child) {
+        margin-left: 1.5rem;
+      }
+      a {
+        font-size: 1.25rem;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+.fBottom {
+  background: $sccondary;
+  color: $white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+}

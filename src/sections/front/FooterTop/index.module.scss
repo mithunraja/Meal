@@ -1,0 +1,37 @@
+@import "../../../assets/front/styles/variable";
+.footerTop {
+  padding: 3rem 0 5rem;
+}
+.footerTopContainer {
+  max-width: 1170px;
+}
+.imgContainerRight {
+  margin-left: -45%;
+  img {
+    width: 100%;
+    display: block;
+    border-radius: 1rem;
+  }
+}
+.imgContainer {
+  margin-top: 10%;
+  margin-right: 10%;
+  z-index: 1;
+  position: relative;
+  &:before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: -15%;
+    right: -10%;
+    width: 65%;
+    height: 105%;
+    border: 10px solid $primary;
+    z-index: -1;
+  }
+  img {
+    width: 100%;
+    display: block;
+    border-radius: 1rem;
+  }
+}
