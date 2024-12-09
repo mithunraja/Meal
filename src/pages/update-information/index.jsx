@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import style from "./index.module.scss";
-import Layout from "@/components/front/include/Layout";
 import userImg from "@/assets/front/images/user-img.jpg";
+import Layout from "@/components/front/include/Layout";
+import PostOrder from "@/sections/front/PostOrder";
 import Image from "next/image";
 import Link from "next/link";
-import { TfiTruck } from "react-icons/tfi";
+import { useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
-import PostOrder from "@/sections/front/PostOrder";
+import { TfiTruck } from "react-icons/tfi";
+import style from "./index.module.scss";
 
 const UpdateInformation = () => {
   const [selectedGender, setSelectedGender] = useState("1");
@@ -62,7 +62,7 @@ const UpdateInformation = () => {
                           <span>משלוח חינם:</span> שבת, 16 בנובמבר, 2024
                         </li>
                         <li>
-                          <span>כתובת למשלוח:</span> 10 ד"ר דרבלה, ראשון לציון,
+                          <span>כתובת למשלוח:</span> {`10 ד"ר דרבלה, ראשון לציון,`} 
                           ישראל
                         </li>
                       </ul>
