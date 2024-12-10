@@ -4,8 +4,40 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import style from "./index.module.scss";
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_SITE_SETTING } from "@/redux/siteSettingSlice";
+import { contactInfoService } from "@/services/common.service";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
+  const siteSetting = useSelector((state) => state.siteSetting);
+
+  // console.log("siteSetting", siteSetting)
+
+  useEffect(() => {
+    if (siteSetting?.siteSetting===null) {
+
+      const fetchSetting = async () => {
+        
+        try {
+          const response = await contactInfoService();
+          if (response.status === 200) {
+            dispatch(SET_SITE_SETTING(response.data));
+          }
+        } catch (e) {
+          
+        }
+
+        
+      }
+
+      fetchSetting();
+
+    }
+  });
+
+
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
@@ -60,7 +92,12 @@ const Header = () => {
             <Col lg="auto">
               <div className={style.logo}>
                 <Link href={"/"}>
-                  <Image alt="" src={logo} width={0} height={0} />
+                  <Image
+                      alt="Logo"
+                      src={siteSetting?.siteSetting?.logo ? `${process.env.NEXT_PUBLIC_IMAGE_FILE_PATH}/logo-image/${siteSetting?.siteSetting?.logo}` : logo}
+                      width={500}
+                      height={500}
+                    />
                 </Link>
               </div>
             </Col>

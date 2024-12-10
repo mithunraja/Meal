@@ -7,6 +7,7 @@ import "aos/dist/aos.css"; // You can also use <link> for styles
 
 import "@/assets/front/font/stylesheet.css";
 import "@/assets/front/styles/style.scss";
+import store from '../redux/store';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -14,7 +15,13 @@ export default function App({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
     AOS.init();
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
 import { useEffect } from "react";
+import { Provider } from "react-redux";
+

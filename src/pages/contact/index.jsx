@@ -9,10 +9,23 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import style from "./index.module.scss";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
 
-const Contact = ({ contactInfoResponse }) => {
+const Contact = () => {
 
   const { register, reset, formState: { errors }, handleSubmit } = useForm();
+  const [contactInfoResponse, setcontactInfoResponse] = useState([]);
+  
+
+  const siteSetting = useSelector((state) => state.siteSetting);
+
+  useEffect(() => {
+    const fetchSetting = async () => {
+      setcontactInfoResponse(siteSetting?.siteSetting);
+    }
+    fetchSetting();
+  });
 
   const onSubmit = async (data) => {
     try {
@@ -199,25 +212,6 @@ const Contact = ({ contactInfoResponse }) => {
 };
 
 export default Contact;
-
-export async function getServerSideProps() {
-  try {
-    const contactInfoResponse = await contactInfoService();
-    //console.log("Contact Info Response:", contactInfoResponse);
-    return { 
-      props: { 
-        contactInfoResponse
-      } 
-    };
-  } catch (error) {
-    console.error("Error fetching contact info:", error.message);
-    return { 
-      props: { 
-        contactInfoResponse: {},
-      } 
-    };
-  }
-}
 
 
 
