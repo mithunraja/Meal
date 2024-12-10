@@ -6,8 +6,12 @@ import Image from "next/image";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+
+  const siteSetting = useSelector((state) => state.siteSetting);
+
   return (
     <>
       <footer className={style.footer}>
@@ -39,33 +43,33 @@ const Footer = () => {
               <div className={`d-flex justify-content-center ${style.fSocial}`}>
                 <ul className={`d-flex ${style.social}`}>
                   <li>
-                    <a href="#">
-                      <FaXTwitter />
-                    </a>
+                  <Link href={siteSetting?.siteSetting?.twitter_url || '#'}>
+                    <FaXTwitter />
+                  </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <FaInstagram />
-                    </a>
+                  <Link href={siteSetting?.siteSetting?.insta_url || '#'}>
+                    <FaInstagram />
+                  </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <FaYoutube />
-                    </a>
+                  <Link href={siteSetting?.siteSetting?.youtube_url || '#'}>
+                    <FaYoutube />
+                  </Link>
                   </li>
                   <li>
-                    <a href="#">
-                      <FaLinkedin />
-                    </a>
+                  <Link href={siteSetting?.siteSetting?.linkedin_url || '#'}>
+                    <FaLinkedin />
+                  </Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div className={style.fBottom}>
+        {/* <div className={style.fBottom}>
           © Copyright 2022 Aqualeaf it solutions Pvt. Ltd. All Rights Reserved.
-        </div>
+        </div> */}
       </footer>
     </>
   );
